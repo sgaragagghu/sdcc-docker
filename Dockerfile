@@ -1,5 +1,10 @@
 FROM debian:buster-slim
-RUN apt-get update && apt-get upgrade -y && apt-get -y install golang
+RUN apt-get update && apt-get upgrade -y && apt-get -y install golang vim
+RUN useradd --create-home --no-log-init --shell /bin/bash user
+USER user
+WORKDIR ~
+# fake foreground process
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 #WORKDIR /code
 #ENV FLASK_APP=app.py
 #ENV FLASK_RUN_HOST=0.0.0.0
