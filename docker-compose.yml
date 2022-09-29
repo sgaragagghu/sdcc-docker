@@ -1,7 +1,9 @@
 version: "3.6"
 services:
   master:
-    build: ./master
+    build:
+      context: .
+      dockerfile: ./master
 #    ports:
 #      - "8000:5000"
 #  redis:
