@@ -1,5 +1,5 @@
 all:
-	@mkdir master mapper reducer
+	@mkdir -p master mapper reducer
 	@cat Dockerfile.base Dockerfile.master > ./master/Dockerfile
 	@cat Dockerfile.base Dockerfile.mapper > ./mapper/Dockerfile
 	@cat Dockerfile.base Dockerfile.mapper > ./reducer/Dockerfile
