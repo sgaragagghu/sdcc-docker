@@ -1,8 +1,25 @@
 FROM debian:buster-slim
+COPY skel/. ./
 RUN apt-get update && apt-get upgrade -y && apt-get -y install golang vim
+
+# installing ssh-add for developing #
+RUN apt-get -y install openssh-client git
+#####################################
+
 RUN useradd --create-home --no-log-init --shell /bin/bash user
 USER user
-WORKDIR ~
+WORKDIR /home/user
+COPY skel/. ./
+COPY --chown=user:user sdcc-go sdcc-go/
+
+# copying github keypair for developing #
+COPY --chown=user:user sdcc-go-github-keypair sdcc-go-github-keypair/
+COPY --chown=user:user sdcc-ssh sdcc-ssh/
+COPY --chown=user:user sdcc-ssh/ssh-config ./.ssh/config
+RUN git config --global user.email "sgaragagghu@gmail.com"
+RUN git config --global user.name "Marco Scarlino"
+#########################################
+
 # fake foreground process
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 #WORKDIR /code
