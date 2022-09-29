@@ -3,7 +3,7 @@ services:
   master:
     build:
       context: .
-      dockerfile: ./master
+      dockerfile: ./master/Dockerfile
 #    ports:
 #      - "8000:5000"
 #  redis:
