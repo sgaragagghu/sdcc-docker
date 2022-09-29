@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: ./master/Dockerfile
+  mapper:
+    build:
+      context: .
+      dockerfile: ./mapper/Dockerfile
 #    ports:
 #      - "8000:5000"
 #  redis:
