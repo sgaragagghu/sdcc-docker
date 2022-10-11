@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 COPY skel/. ./
-RUN apt-get update && apt-get upgrade -y && apt-get -y install golang vim uuid-runtime
+RUN apt-get update && apt-get upgrade -y && apt-get -y install golang vim
 
 # installing ssh-add for developing #
 RUN apt-get -y install openssh-client git
@@ -11,8 +11,6 @@ USER user
 WORKDIR /home/user
 COPY skel/. ./
 COPY --chown=user:user sdcc-go sdcc-go/
-RUN echo "UUID DEFAULT=$(uuidgen)" > ./sdcc-go/UUID
-
 
 # copying github keypair for developing #
 COPY --chown=user:user sdcc-go-github-keypair sdcc-go-github-keypair/
@@ -24,6 +22,7 @@ RUN git config --global user.name "Marco Scarlino"
 
 
 RUN go get github.com/elliotchance/orderedmap
+RUN go get github.com/golang-ds/linkedlist
 
 # fake foreground process
 ENTRYPOINT ["tail", "-f", "/dev/null"]
