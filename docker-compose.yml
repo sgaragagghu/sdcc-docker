@@ -13,6 +13,12 @@ services:
       dockerfile: ./mapper/Dockerfile
     networks:
       - app_net
+  reducer:
+    build:
+      context: .
+      dockerfile: ./reducer/Dockerfile
+    networks:
+      - app_net
 #    ports:
 #      - "8000:5000"
 #  redis:
