@@ -22,6 +22,11 @@ RUN git config --global user.name "Marco Scarlino"
 
 
 RUN go get github.com/elliotchance/orderedmap
+RUN go get github.com/gorilla/mux
+RUN go get github.com/gorilla/rpc
+RUN go get github.com/gorilla/rpc/json
+
+
 
 # fake foreground process
 ENTRYPOINT ["tail", "-f", "/dev/null"]
