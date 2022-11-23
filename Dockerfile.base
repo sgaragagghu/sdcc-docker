@@ -1,16 +1,21 @@
+# This file is shared between master, mapper and reducer's dockerfile
 FROM debian:buster-slim
+# default bash profile files
 COPY skel/. ./
+# updateing and installing needed packages
 RUN apt-get update && apt-get upgrade -y && apt-get -y install golang vim
 
 # installing programs for developing #
 RUN apt-get -y install openssh-client git curl
 #####################################
 
+# Adding the non-root user #
 RUN useradd --create-home --no-log-init --shell /bin/bash user
 USER user
 WORKDIR /home/user
 COPY skel/. ./
 COPY --chown=user:user sdcc-go sdcc-go/
+###########################
 
 # copying github keypair for developing #
 COPY --chown=user:user sdcc-go-github-keypair sdcc-go-github-keypair/
@@ -20,22 +25,13 @@ RUN git config --global user.email "sgaragagghu@gmail.com"
 RUN git config --global user.name "Marco Scarlino"
 #########################################
 
-
+# Installing go 3rd party libraries #
 RUN go get github.com/elliotchance/orderedmap
 RUN go get github.com/gorilla/mux
 RUN go get github.com/gorilla/rpc
 RUN go get github.com/gorilla/rpc/json
-
+#####################################
 
 
 # fake foreground process
 ENTRYPOINT ["tail", "-f", "/dev/null"]
-#WORKDIR /code
-#ENV FLASK_APP=app.py
-#ENV FLASK_RUN_HOST=0.0.0.0
-#RUN apk add --no-cache gcc musl-dev linux-headers
-#COPY requirements.txt requirements.txt
-#RUN pip install -r requirements.txt
-#EXPOSE 5000
-#COPY . .
-#CMD ["flask", "run"]
