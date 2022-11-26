@@ -15,14 +15,12 @@ services:
       dockerfile: ./mapper/Dockerfile
     networks:
       - app_net
-    scale: 2
   reducer:
     build:
       context: .
       dockerfile: ./reducer/Dockerfile
     networks:
       - app_net
-    scale: 2
 #    ports:
 #      - "8000:5000"
 #  redis:
