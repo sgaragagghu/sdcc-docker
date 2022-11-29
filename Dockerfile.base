@@ -34,4 +34,9 @@ RUN go get github.com/gorilla/rpc/json
 
 
 # fake foreground process
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+
+# actual process
+WORKDIR /home/user/sdcc-go
+ENTRYPOINT ["go", "run", "."]
+
