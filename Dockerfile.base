@@ -18,11 +18,11 @@ COPY --chown=user:user sdcc-go sdcc-go/
 ###########################
 
 # copying github keypair for developing #
-COPY --chown=user:user sdcc-go-github-keypair sdcc-go-github-keypair/
-COPY --chown=user:user sdcc-ssh sdcc-ssh/
-COPY --chown=user:user sdcc-ssh/ssh-config ./.ssh/config
-RUN git config --global user.email "sgaragagghu@gmail.com"
-RUN git config --global user.name "Marco Scarlino"
+#COPY --chown=user:user sdcc-go-github-keypair sdcc-go-github-keypair/
+#COPY --chown=user:user sdcc-ssh sdcc-ssh/
+#COPY --chown=user:user sdcc-ssh/ssh-config ./.ssh/config
+#RUN git config --global user.email "sgaragagghu@gmail.com"
+#RUN git config --global user.name "Marco Scarlino"
 #########################################
 
 # Installing go 3rd party libraries #
